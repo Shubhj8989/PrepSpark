@@ -256,7 +256,6 @@ elif page == "Predictions":
                 
                 # Use columns to create a card-like effect
                 with cols[i % 2]:
-                    
                     st.subheader(f"📘 {subject}")
                     st.metric("Predicted Score", f"{score:.1f} / 100", help=f"Base: {prediction['base']} + Hours: {prediction['from_hours']:.1f} + Eff: {prediction['from_productivity']:.1f}")
                     st.progress(int(score))
