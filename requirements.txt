@@ -1,0 +1,7 @@
+mysql-connector-python
+streamlit
+pandas
+matplotlib
+scikit-learn
+bcrypt
+python-dotenv
