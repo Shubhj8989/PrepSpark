@@ -8,8 +8,12 @@ import streamlit as st
 
 def get_connection():
     # Try getting config from Streamlit secrets first (Cloud)
-    if "DB_HOST" in st.secrets:
-        config = st.secrets
+    if st.secrets:
+        # Check if user pasted [secrets] section (nested dict)
+        if "secrets" in st.secrets:
+             config = st.secrets["secrets"]
+        else:
+             config = st.secrets
     # Fallback to environment variables (Local)
     else:
         config = os.environ
@@ -19,7 +23,8 @@ def get_connection():
             host=config.get("DB_HOST", "localhost"),
             user=config.get("DB_USER", "root"),
             password=config.get("DB_PASSWORD", ""),
-            database=config.get("DB_NAME", "smart_study_analyzer")
+            database=config.get("DB_NAME", "smart_study_analyzer"),
+            port=int(config.get("DB_PORT", 3306))
         )
     except mysql.connector.Error as err:
         if err.errno == mysql.connector.errorcode.ER_ACCESS_DENIED_ERROR:
