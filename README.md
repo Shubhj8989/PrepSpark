@@ -17,11 +17,23 @@ pip install -r requirements.txt
     SOURCE schema.sql;
     ```
 
-### 3. Configure Connection
-Open `db.py` and update the `password` field with your MySQL root password:
-```python
-password="your_actual_password"
-```
+### 3. Configure Database
+This project uses **environment variables** for security.
+
+1.  **Local Setup**:
+    - Copy `.env.example` to `.env` (if provided) or create a `.env` file.
+    - Add your database credentials:
+      ```ini
+      DB_HOST=localhost
+      DB_USER=root
+      DB_PASSWORD=your_password
+      DB_NAME=smart_study_analyzer
+      ```
+    - For **TiDB Cloud** (Remote), use the credentials from your cluster.
+
+2.  **Streamlit Cloud Deployment**:
+    - Add these same values to your App **Secrets** in the Streamlit Dashboard.
+    - See [TiDB Setup Guide](tidb_setup.md) for detailed cloud setup.
 
 ### 4. Run the Application
 Start the Streamlit app:
